@@ -46,11 +46,17 @@
           msg:'没有数据',
           movies:[],
           isUp:true,
-          moviesStart:0
+          moviesStart:0,
+          count:0
         }
       },
       computed:{
-
+        isToButton(){
+          if(this.moviesStart+20>=this.count){
+            return true
+          }
+            return false
+        }
       },
       created(){
         this.getData()
@@ -72,6 +78,7 @@
               }}).then((res) => {
             console.log(res.data)
             this.msg=res.data.title
+            this.count=res.data.total
             this.movies=this.movies.concat(res.data.subjects)
             this.isUp=true
           }).catch(err=>console.log(err))
@@ -82,9 +89,10 @@
           console.log(this.$refs.top250.scrollTop)//滚动的高度
           console.log(this.$refs.content.clientHeight)//movie文件的高度
           if(this.$refs.content.clientHeight<=2*this.$refs.top250.offsetHeight+this.$refs.top250.scrollTop){
-            if(this.isUp){
+            if(this.isUp&&!this.isToButton){
               this.isUp=false
               this.moviesStart+=20
+
               this.getData()
             }
 
