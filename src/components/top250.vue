@@ -1,7 +1,6 @@
 <template>
     <div class="top250" @scroll="updatemovie()" ref="top250">
-      top250
-      <p>top250:{{msg}}</p>
+      <i class="iconfont icon-loading" v-if="isloading"></i>
       <div class="content" ref="content">
         <div v-for="(item ,index) in movies" :key="index" class="movie">
           <a href="#" class="clearfix">
@@ -34,7 +33,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+
     export default {
         name: "us",
 
@@ -59,6 +58,7 @@
         }
       },
       created(){
+          this.isloading=true
         this.getData()
       },
       beforeMount(){
@@ -81,6 +81,7 @@
             this.count=res.data.total
             this.movies=this.movies.concat(res.data.subjects)
             this.isUp=true
+            this.isloading=false
           }).catch(err=>console.log(err))
          },
         updatemovie(){
@@ -111,6 +112,18 @@
   padding: 0;
   list-style: none;
 }
+.iconfont,.icon-loading {
+  position: fixed;
+  margin:0 auto;
+  font-size: 40px;
+  top:50%;
+  left:50%;
+  animation:2s rotate linear infinite;
+}
+  @keyframes rotate{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+  }
   .clearfix::after{
     display: block;
     content: '';
@@ -120,13 +133,11 @@
     font-size: 12px;
     line-height: 1.2;
     background:#fff;
-    border: 1px solid red;
     position: fixed;
     top: 0;
     height: calc(100vh - 50px);
     width: 100%;
     overflow: auto;
-
   }
   .movie{
     border-bottom: 1px solid #ccc;
