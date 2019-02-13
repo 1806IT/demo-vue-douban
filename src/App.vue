@@ -1,20 +1,19 @@
 <template>
   <div id="app">
+    <router-view></router-view>
     <myfooter></myfooter>
-    <top250></top250>
   </div>
 </template>
 
 <script>
   import myfooter from './components/myfooter'
-  import top250 from './components/top250'
+/*  import top250 from './components/top250'
   import us from './components/us'
-  import search from './components/search'
+  import search from './components/search'*/
 export default {
   name: 'App',
   components:{
-    myfooter,
-    top250
+    myfooter
   }
 }
 </script>

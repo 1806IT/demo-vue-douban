@@ -1,15 +1,19 @@
 <template>
   <div class="hello">
     <ul>
-      <li>top250</li>
-      <li>北美票行榜</li>
-      <li>搜索</li>
+      <li >
+        <router-link to='/top250'>top250</router-link>
+      </li>
+      <li >
+        <router-link to='/us/'>北美票行榜</router-link>
+      </li>
+      <li >
+        <router-link to='/search/'>搜索</router-link>
+      </li>
     </ul>
   </div>
 </template>
-import top250 from './components/top250'
-import us from './components/us'
-import search from './components/search'
+
 <script>
 export default {
   name: 'myfooter',
@@ -18,6 +22,8 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
+  components:{
+  }
 
 }
 </script>

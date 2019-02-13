@@ -15,11 +15,11 @@ export default new Router({
       name: 'home',
       component: myfooter
     },
-    /*{
-      path: '/',
+    {
+      path: '/top250',
       name: 'top250',
       component: top250
-    },*/
+    },
     {
       path: '/search/',
       name: 'search',
